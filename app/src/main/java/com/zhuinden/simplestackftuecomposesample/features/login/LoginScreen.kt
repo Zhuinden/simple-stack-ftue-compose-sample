@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.zhuinden.simplestack.ServiceBinder
 import com.zhuinden.simplestackcomposeintegration.services.rememberService
-import com.zhuinden.simplestackextensions.services.DefaultServiceProvider
 import com.zhuinden.simplestackextensions.servicesktx.add
 import com.zhuinden.simplestackextensions.servicesktx.lookup
 import com.zhuinden.simplestackftuecomposesample.app.AuthenticationManager
@@ -24,7 +23,7 @@ import com.zhuinden.simplestackftuecomposesample.utils.set
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class LoginScreen : ComposeKey(), DefaultServiceProvider.HasServices {
+class LoginScreen : ComposeKey() {
     @Suppress("RemoveExplicitTypeArguments")
     override fun bindServices(serviceBinder: ServiceBinder) {
         with(serviceBinder) {
