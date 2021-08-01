@@ -4,6 +4,8 @@ Sample code using [simple-stack](https://github.com/Zhuinden/simple-stack/) and 
 
 You can also see the same concept implemented using Simple-Stack (Fragments) in [the Simple-Stack FTUE sample](https://github.com/Zhuinden/simple-stack-ftue-sample/), or with Jetpack Navigation (Fragments) in [the Jetpack Navigation FTUE sample](https://github.com/Zhuinden/jetpack-navigation-ftue-sample/)).
 
+There is also [Jetpack Navigation's Navigation-Compose FTUE sample](https://github.com/Zhuinden/jetpack-navigation-ftue-compose-sample) for comparison.
+
 ## License
 
     Copyright 2021 Gabor Varadi
