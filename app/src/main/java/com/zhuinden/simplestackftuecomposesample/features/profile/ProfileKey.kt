@@ -1,10 +1,6 @@
 package com.zhuinden.simplestackftuecomposesample.features.profile
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.zhuinden.simplestack.ServiceBinder
 import com.zhuinden.simplestackextensions.servicesktx.add
@@ -28,8 +24,9 @@ data class ProfileKey(
 
     @Composable
     override fun ScreenComposable(modifier: Modifier) {
-        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text("Hello $username!")
-        }
+        ProfileScreen(
+            username = username,
+            modifier = modifier,
+        )
     }
 }
