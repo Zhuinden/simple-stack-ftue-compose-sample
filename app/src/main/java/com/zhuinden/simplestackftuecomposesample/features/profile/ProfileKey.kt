@@ -16,7 +16,12 @@ data class ProfileKey(
     @Suppress("RemoveExplicitTypeArguments")
     override fun bindServices(serviceBinder: ServiceBinder) {
         with(serviceBinder) {
-            add(ProfileViewModel(lookup<AuthenticationManager>(), backstack))
+            add(
+                ProfileViewModel(
+                    authenticationManager = lookup<AuthenticationManager>(),
+                    backstack = backstack,
+                )
+            )
         }
     }
 

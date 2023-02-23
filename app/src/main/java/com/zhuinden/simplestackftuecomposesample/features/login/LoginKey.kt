@@ -11,11 +11,18 @@ import com.zhuinden.simplestackftuecomposesample.app.ComposeKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class LoginKey : ComposeKey() {
+data object LoginKey : ComposeKey() {
+    operator fun invoke(): LoginKey = LoginKey
+
     @Suppress("RemoveExplicitTypeArguments")
     override fun bindServices(serviceBinder: ServiceBinder) {
         with(serviceBinder) {
-            add(LoginViewModel(lookup<AuthenticationManager>(), backstack))
+            add(
+                LoginViewModel(
+                    authenticationManager = lookup<AuthenticationManager>(),
+                    backstack = backstack,
+                )
+            )
         }
     }
 

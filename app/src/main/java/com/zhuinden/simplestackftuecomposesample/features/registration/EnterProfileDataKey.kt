@@ -7,7 +7,9 @@ import com.zhuinden.simplestackftuecomposesample.app.ComposeKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class EnterProfileDataKey : ComposeKey(), ScopeKey.Child {
+data object EnterProfileDataKey : ComposeKey(), ScopeKey.Child {
+    operator fun invoke(): EnterProfileDataKey = EnterProfileDataKey
+
     override fun getParentScopes(): List<String> = listOf(RegistrationViewModel::class.java.name)
 
     @Composable

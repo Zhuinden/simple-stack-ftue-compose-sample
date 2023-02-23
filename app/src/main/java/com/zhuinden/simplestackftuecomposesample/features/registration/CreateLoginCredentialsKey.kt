@@ -7,7 +7,9 @@ import com.zhuinden.simplestackftuecomposesample.app.ComposeKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class CreateLoginCredentialsKey : ComposeKey(), ScopeKey.Child {
+data object CreateLoginCredentialsKey : ComposeKey(), ScopeKey.Child {
+    operator fun invoke(): CreateLoginCredentialsKey = CreateLoginCredentialsKey
+
     override fun getParentScopes(): List<String> = listOf(RegistrationViewModel::class.java.name)
 
     @Composable
