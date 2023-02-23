@@ -28,7 +28,7 @@ data class ProfileKey(
 
     @Composable
     override fun ScreenComposable(modifier: Modifier) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text("Hello $username!")
         }
     }

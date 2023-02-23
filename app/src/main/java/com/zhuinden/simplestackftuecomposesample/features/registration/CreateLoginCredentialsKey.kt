@@ -30,7 +30,7 @@ class CreateLoginCredentialsKey : ComposeKey(), ScopeKey.Child {
         val isEnabled = registrationViewModel.isRegisterAndLoginEnabled.subscribeAsState(initial = false)
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

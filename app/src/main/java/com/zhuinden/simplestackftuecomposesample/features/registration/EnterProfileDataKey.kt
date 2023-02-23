@@ -29,7 +29,7 @@ class EnterProfileDataKey : ComposeKey(), ScopeKey.Child {
         val isEnabled = registrationViewModel.isEnterProfileNextEnabled.subscribeAsState(initial = false)
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
