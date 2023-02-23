@@ -2,13 +2,9 @@ package com.zhuinden.simplestackftuecomposesample.features.registration
 
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.zhuinden.rxvalidatebykt.validateBy
-import com.zhuinden.simplestack.Backstack
-import com.zhuinden.simplestack.Bundleable
-import com.zhuinden.simplestack.History
-import com.zhuinden.simplestack.ScopedServices
-import com.zhuinden.simplestack.StateChange
+import com.zhuinden.simplestack.*
 import com.zhuinden.simplestackftuecomposesample.app.AuthenticationManager
-import com.zhuinden.simplestackftuecomposesample.features.profile.ProfileScreen
+import com.zhuinden.simplestackftuecomposesample.features.profile.ProfileKey
 import com.zhuinden.simplestackftuecomposesample.utils.get
 import com.zhuinden.simplestackftuecomposesample.utils.set
 import com.zhuinden.statebundle.StateBundle
@@ -59,13 +55,14 @@ class RegistrationViewModel(
         if (isRegisterAndLoginEnabledRelay.get()) {
             val username = username.get()
             authenticationManager.saveRegistration(username)
-            backstack.setHistory(History.of(ProfileScreen(username)), StateChange.REPLACE)
+
+            backstack.setHistory(History.of(ProfileKey(username)), StateChange.REPLACE)
         }
     }
 
     fun onEnterProfileNextClicked() {
         if (isEnterProfileNextEnabledRelay.get()) {
-            backstack.goTo(CreateLoginCredentialsScreen())
+            backstack.goTo(CreateLoginCredentialsKey())
         }
     }
 

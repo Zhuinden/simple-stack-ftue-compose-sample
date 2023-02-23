@@ -1,10 +1,6 @@
 package com.zhuinden.simplestackftuecomposesample.features.registration
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -20,7 +16,7 @@ import com.zhuinden.simplestackftuecomposesample.utils.set
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class EnterProfileDataScreen : ComposeKey(), ScopeKey.Child {
+class EnterProfileDataKey : ComposeKey(), ScopeKey.Child {
     override fun getParentScopes(): List<String> = listOf(RegistrationViewModel::class.java.name)
 
     @Composable

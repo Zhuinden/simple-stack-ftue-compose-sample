@@ -1,10 +1,6 @@
 package com.zhuinden.simplestackftuecomposesample.features.login
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
@@ -23,7 +19,7 @@ import com.zhuinden.simplestackftuecomposesample.utils.set
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class LoginScreen : ComposeKey() {
+class LoginKey : ComposeKey() {
     @Suppress("RemoveExplicitTypeArguments")
     override fun bindServices(serviceBinder: ServiceBinder) {
         with(serviceBinder) {
@@ -41,7 +37,7 @@ class LoginScreen : ComposeKey() {
         val isLoginEnabled = loginViewModel.isLoginEnabled.subscribeAsState(initial = false)
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

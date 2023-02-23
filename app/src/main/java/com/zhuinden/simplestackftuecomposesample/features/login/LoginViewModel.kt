@@ -2,14 +2,10 @@ package com.zhuinden.simplestackftuecomposesample.features.login
 
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.zhuinden.rxvalidatebykt.validateBy
-import com.zhuinden.simplestack.Backstack
-import com.zhuinden.simplestack.Bundleable
-import com.zhuinden.simplestack.History
-import com.zhuinden.simplestack.ScopedServices
-import com.zhuinden.simplestack.StateChange
+import com.zhuinden.simplestack.*
 import com.zhuinden.simplestackftuecomposesample.app.AuthenticationManager
-import com.zhuinden.simplestackftuecomposesample.features.profile.ProfileScreen
-import com.zhuinden.simplestackftuecomposesample.features.registration.EnterProfileDataScreen
+import com.zhuinden.simplestackftuecomposesample.features.profile.ProfileKey
+import com.zhuinden.simplestackftuecomposesample.features.registration.EnterProfileDataKey
 import com.zhuinden.simplestackftuecomposesample.utils.get
 import com.zhuinden.simplestackftuecomposesample.utils.set
 import com.zhuinden.statebundle.StateBundle
@@ -50,11 +46,12 @@ class LoginViewModel(
 
         val username = username.get()
         authenticationManager.saveRegistration(username)
-        backstack.setHistory(History.of(ProfileScreen(username)), StateChange.REPLACE)
+
+        backstack.setHistory(History.of(ProfileKey(username)), StateChange.REPLACE)
     }
 
     fun onRegisterClicked() {
-        backstack.goTo(EnterProfileDataScreen())
+        backstack.goTo(EnterProfileDataKey())
     }
 
     override fun toBundle(): StateBundle = StateBundle().apply {

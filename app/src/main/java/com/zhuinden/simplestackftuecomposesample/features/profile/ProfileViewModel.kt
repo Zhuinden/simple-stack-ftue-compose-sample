@@ -5,7 +5,7 @@ import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.ScopedServices
 import com.zhuinden.simplestack.StateChange
 import com.zhuinden.simplestackftuecomposesample.app.AuthenticationManager
-import com.zhuinden.simplestackftuecomposesample.features.login.LoginScreen
+import com.zhuinden.simplestackftuecomposesample.features.login.LoginKey
 
 class ProfileViewModel(
     private val authenticationManager: AuthenticationManager,
@@ -13,7 +13,7 @@ class ProfileViewModel(
 ) : ScopedServices.Activated {
     override fun onServiceActive() {
         if (!authenticationManager.isAuthenticated()) {
-            backstack.setHistory(History.of(LoginScreen()), StateChange.REPLACE)
+            backstack.setHistory(History.of(LoginKey()), StateChange.REPLACE)
         }
     }
 

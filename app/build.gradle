@@ -3,8 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 33
 
     buildFeatures {
         viewBinding true
@@ -12,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.zhuinden.simplestackftuecomposesample"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -30,13 +29,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        useIR = true
+        languageVersion = '1.9'
     }
     buildFeatures {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.0.0"
+        kotlinCompilerExtensionVersion "1.4.3"
     }
 
     packagingOptions {
@@ -52,37 +51,41 @@ android {
     }
 }
 
+kotlin.sourceSets.all {
+    languageSettings.enableLanguageFeature("DataObjects")
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.activity:activity-ktx:1.3.0'
-    implementation 'androidx.fragment:fragment-ktx:1.3.6'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.activity:activity-ktx:1.6.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation "androidx.recyclerview:recyclerview:1.2.1"
 
-    def compose_version = "1.0.0"
+    implementation "androidx.compose.runtime:runtime:1.3.3"
+    implementation "androidx.compose.ui:ui:1.3.3"
+    implementation "androidx.compose.ui:ui-util:1.3.3"
+    implementation "androidx.compose.ui:ui-text:1.3.3"
+    implementation "androidx.compose.ui:ui-unit:1.3.3"
+    implementation "androidx.compose.ui:ui-geometry:1.3.3"
+    implementation "androidx.compose.foundation:foundation:1.3.1"
+    implementation "androidx.compose.foundation:foundation-layout:1.3.1"
+    implementation "androidx.compose.material:material:1.3.1"
+    implementation "androidx.compose.material:material-icons-extended:1.3.1"
+    implementation "androidx.compose.animation:animation:1.3.3"
+    implementation "androidx.compose.ui:ui-tooling:1.3.3"
 
-    implementation "androidx.compose.runtime:runtime:$compose_version"
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-util:$compose_version"
-    implementation "androidx.compose.ui:ui-text:$compose_version"
-    implementation "androidx.compose.ui:ui-unit:$compose_version"
-    implementation "androidx.compose.ui:ui-geometry:$compose_version"
-    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
-    implementation "androidx.compose.foundation:foundation:$compose_version"
-    implementation "androidx.compose.animation:animation:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "io.coil-kt:coil-compose:1.3.1"
 
-    implementation 'androidx.activity:activity-compose:1.3.0'
+    implementation 'androidx.activity:activity-compose:1.6.1'
 
-    implementation 'com.github.Zhuinden:simple-stack:2.6.2'
-    implementation "com.github.Zhuinden:simple-stack-extensions:2.2.2"
-    implementation 'com.github.Zhuinden:simple-stack-compose-integration:0.9.0'
+    implementation 'com.github.Zhuinden:simple-stack:2.6.5'
+    implementation "com.github.Zhuinden:simple-stack-extensions:2.2.5"
+    implementation 'com.github.Zhuinden:simple-stack-compose-integration:0.10.0'
 
-    implementation "androidx.compose.runtime:runtime-rxjava2:$compose_version"
+    implementation "androidx.compose.runtime:runtime-rxjava2:1.3.3"
 
     implementation 'com.github.Zhuinden:rx-combinetuple-kt:1.2.1'
     implementation 'com.github.Zhuinden:rx-validateby-kt:2.1.1'
@@ -93,7 +96,7 @@ dependencies {
     implementation 'com.jakewharton.rxrelay2:rxrelay:2.1.1'
 
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'com.github.Zhuinden:espresso-helper:1.0.0'
 }

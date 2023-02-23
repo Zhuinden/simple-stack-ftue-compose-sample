@@ -14,7 +14,7 @@ import com.zhuinden.simplestackftuecomposesample.app.ComposeKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class ProfileScreen(
+data class ProfileKey(
     val username: String
 ) : ComposeKey() {
     @Suppress("RemoveExplicitTypeArguments")

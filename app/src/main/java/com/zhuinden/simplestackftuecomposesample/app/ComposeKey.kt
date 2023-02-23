@@ -8,7 +8,7 @@ import com.zhuinden.simplestackextensions.services.DefaultServiceProvider
 abstract class ComposeKey : DefaultComposeKey(), Parcelable, DefaultServiceProvider.HasServices {
     override val saveableStateProviderKey: Any = this // data class + parcelable!
 
-    override fun getScopeTag(): String = javaClass.name
+    override fun getScopeTag(): String = toString()
 
     override fun bindServices(serviceBinder: ServiceBinder) {
     }
