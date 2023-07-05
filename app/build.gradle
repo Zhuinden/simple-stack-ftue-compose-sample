@@ -81,9 +81,9 @@ dependencies {
 
     implementation 'androidx.activity:activity-compose:1.7.2'
 
-    implementation 'com.github.Zhuinden:simple-stack:2.7.0'
-    implementation "com.github.Zhuinden:simple-stack-extensions:2.3.2"
-    implementation 'com.github.Zhuinden:simple-stack-compose-integration:0.12.1'
+    implementation 'com.github.Zhuinden:simple-stack:2.8.0'
+    implementation "com.github.Zhuinden:simple-stack-extensions:2.3.3"
+    implementation 'com.github.Zhuinden:simple-stack-compose-integration:0.12.2'
 
     implementation "androidx.compose.runtime:runtime-rxjava2:1.4.3"
 
