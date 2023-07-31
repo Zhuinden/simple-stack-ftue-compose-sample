@@ -10,12 +10,15 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.zhuinden.simplestack.AsyncStateChanger
+import com.zhuinden.simplestack.BackHandlingModel
+import com.zhuinden.simplestack.Backstack
 import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.StateChange
 import com.zhuinden.simplestack.StateChanger
 import com.zhuinden.simplestack.navigator.Navigator
 import com.zhuinden.simplestackcomposeintegration.core.BackstackProvider
 import com.zhuinden.simplestackcomposeintegration.core.ComposeStateChanger
+import com.zhuinden.simplestackextensions.lifecyclektx.observeAheadOfTimeWillHandleBackChanged
 import com.zhuinden.simplestackextensions.navigatorktx.androidContentFrame
 import com.zhuinden.simplestackextensions.servicesktx.get
 import com.zhuinden.simplestackftuecomposesample.features.login.LoginKey
@@ -26,22 +29,18 @@ class MainActivity : AppCompatActivity(), AsyncStateChanger.NavigationHandler {
     private lateinit var composeStateChanger: ComposeStateChanger
     private lateinit var authenticationManager: AuthenticationManager
 
-    @Suppress("DEPRECATION")
-    private val backPressedCallback =
-        object : OnBackPressedCallback(true) { // this is the only way to make Compose BackHandler work reliably for now
-            override fun handleOnBackPressed() {
-                if (!Navigator.onBackPressed(this@MainActivity)) {
-                    this.remove()
-                    onBackPressed()
-                    this@MainActivity.onBackPressedDispatcher.addCallback(this)
-                }
-            }
+    private lateinit var backstack: Backstack
+
+    private val backPressedCallback = object : OnBackPressedCallback(false) {
+        override fun handleOnBackPressed() {
+            backstack.goBack()
         }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        onBackPressedDispatcher.addCallback(backPressedCallback) // this is the only way to make Compose BackHandler work reliably for now
+        onBackPressedDispatcher.addCallback(backPressedCallback)
 
         composeStateChanger = ComposeStateChanger()
 
@@ -50,7 +49,8 @@ class MainActivity : AppCompatActivity(), AsyncStateChanger.NavigationHandler {
 
         authenticationManager = globalServices.get()
 
-        val backstack = Navigator.configure()
+        backstack = Navigator.configure()
+            .setBackHandlingModel(BackHandlingModel.AHEAD_OF_TIME)
             .setStateChanger(AsyncStateChanger(this))
             .setScopedServices(ServiceProvider())
             .setGlobalServices(globalServices)
@@ -62,6 +62,9 @@ class MainActivity : AppCompatActivity(), AsyncStateChanger.NavigationHandler {
                     }
                 )
             )
+
+        backPressedCallback.isEnabled = backstack.willHandleAheadOfTimeBack() // <-- !
+        backstack.observeAheadOfTimeWillHandleBackChanged(this, backPressedCallback::isEnabled::set) // <-- ! from lifecycle-ktx
 
         setContent {
             BackstackProvider(backstack) {
